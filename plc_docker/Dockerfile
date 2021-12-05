@@ -3,7 +3,7 @@ FROM debian:11
 WORKDIR /src
 
 COPY OpenPLC_v3 /src/
-COPY sources.list /etc/apt/sources.list
+#COPY sources.list /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y git sudo
 
