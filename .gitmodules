@@ -1,3 +1,6 @@
 [submodule "plc_docker/OpenPLC_v3"]
 	path = plc_docker/OpenPLC_v3
 	url = https://github.com/thiagoralves/OpenPLC_v3.git
+[submodule "workstation_docker/OpenPLC_Editor"]
+	path = workstation_docker/OpenPLC_Editor
+	url = https://github.com/thiagoralves/OpenPLC_Editor.git
