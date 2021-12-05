@@ -18,6 +18,5 @@ workstation's vnc port is `192.168.95.6:5900`.
 ## View the simulation
 `http://192.168.95.10`
 
-
 ## Limitation
-As `docker-compose` can't specify static IP of replicated containers, there is only one simulation container.
+As `docker-compose` can't specify static IPs of replicated containers, there is only one simulation container.
