@@ -1,0 +1,36 @@
+version: '3'
+services:
+  plc:
+    image: plc:0.1
+    networks:
+      lan:
+        ipv4_address: 192.168.95.2
+  
+  hmi:
+    image: hmi:0.1
+    networks:
+      lan:
+        ipv4_address: 192.168.95.5
+  
+  simulation:
+    image: simulation:0.1
+    deploy:
+      replicas: 1
+    networks:
+      lan:
+        ipv4_address: 192.168.95.10
+  
+  workstation:
+    image: workstation:0.1
+    # ports:
+    #   - 5900:5900
+    networks:
+      lan:
+        ipv4_address: 192.168.95.6
+
+networks:
+  lan:
+    ipam:
+      driver: default
+      config:
+        - subnet: "192.168.95.0/24"

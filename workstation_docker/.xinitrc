@@ -1,0 +1,1 @@
+exec /src/openplc_editor.sh
