@@ -3,6 +3,8 @@ services:
   plc:
     image: plc:0.1
     build: ./plc_docker
+    # ports:
+    #   - 8083:8080
     networks:
       lan:
         ipv4_address: 192.168.95.2
@@ -10,6 +12,8 @@ services:
   hmi:
     image: hmi:0.1
     build: ./hmi_docker
+    # ports:
+    #   - 8082:9090
     networks:
       lan:
         ipv4_address: 192.168.95.5
@@ -19,6 +23,8 @@ services:
     build: ./simulation_docker
     deploy:
       replicas: 1
+    # ports:
+    #   - 8081:80
     networks:
       lan:
         ipv4_address: 192.168.95.10
