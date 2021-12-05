@@ -1,5 +1,5 @@
 
-# Dockerize of [GRFICSv3](https://github.com/mrideout/GRFICSv3)
+# Dockerize [GRFICSv3](https://github.com/mrideout/GRFICSv3)
 
 ## Build images
 1. `docker build -t hmi:0.1 hmi_docker`
@@ -19,4 +19,4 @@ workstation's vnc port is `192.168.95.6:5900`.
 `http://192.168.95.10`
 
 ## Limitation
-As `docker-compose` can't specify static IPs of replicated containers, there is only one simulation container.
+As `docker-compose` can't specify static IPs for replicated containers, there is only one simulation container.
