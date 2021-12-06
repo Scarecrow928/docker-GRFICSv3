@@ -18,7 +18,7 @@ import json
 # --------------------------------------------------------------------------- #
 # import the modbus libraries we need
 # --------------------------------------------------------------------------- #
-from pymodbus.server.async import StartTcpServer
+from pymodbus.server.asynchronous import StartTcpServer
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock
 from pymodbus.datastore import ModbusServerContext, ModbusSlaveContext
@@ -39,7 +39,7 @@ from twisted.internet.task import LoopingCall
 last_command = -1
 def updating_writer(a):
     global last_command
-    print 'updating'
+    print('updating')
     context  = a[0]
     
     slave_id = 0x01 # slave address
@@ -48,14 +48,14 @@ def updating_writer(a):
     
     current_command = context[slave_id].getValues(16, 1, 1)[0] / 65535.0*100.0
 
-    s.send('{"request":"write","data":{"inputs":{"f1_valve_sp":'+repr(current_command)+'}}}\n')
+    s.send(bytes('{"request":"write","data":{"inputs":{"f1_valve_sp":'+repr(current_command)+'}}}\n', encoding='utf-8'))
 
     # import pdb; pdb.set_trace()
     #s.send('{"request":"read"}')
     data = json.loads(s.recv(1500))
     valve_pos = int(data["state"]["f1_valve_pos"]/100.0*65535)
     flow = int(data["outputs"]["f1_flow"]/500.0*65535)
-    print data
+    print(data)
     if valve_pos > 65535:
         valve_pos = 65535
     elif valve_pos < 0:

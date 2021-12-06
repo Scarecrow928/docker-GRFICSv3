@@ -18,7 +18,7 @@ import json
 # --------------------------------------------------------------------------- #
 # import the modbus libraries we need
 # --------------------------------------------------------------------------- #
-from pymodbus.server.async import StartTcpServer
+from pymodbus.server.asynchronous import StartTcpServer
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock
 from pymodbus.datastore import ModbusServerContext, ModbusSlaveContext
@@ -44,7 +44,7 @@ log.setLevel(logging.DEBUG)
 
 
 def updating_writer(a):
-    print 'updating'
+    print('updating')
     context  = a[0]
     readfunction = 0x03 # read holding registers
     writefunction = 0x10
@@ -52,12 +52,12 @@ def updating_writer(a):
     count = 50
     s = a[1]
     # import pdb; pdb.set_trace()
-    s.send('{"request":"read"}')
+    s.send(bytes('{"request":"read"}', encoding='utf-8'))
     data = json.loads(s.recv(1500))
     a_in_purge = int(data["outputs"]["A_in_purge"]*65535)
     b_in_purge = int(data["outputs"]["B_in_purge"]*65535)
     c_in_purge = int(data["outputs"]["C_in_purge"]*65535)
-    print data
+    print(data)
 
     # import pdb; pdb.set_trace()
     context[slave_id].setValues(4, 1, [a_in_purge,b_in_purge,c_in_purge])

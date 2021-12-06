@@ -19,7 +19,7 @@ import json
 # --------------------------------------------------------------------------- #
 # import the modbus libraries we need
 # --------------------------------------------------------------------------- #
-from pymodbus.server.async import StartTcpServer
+from pymodbus.server.asynchronous import StartTcpServer
 from pymodbus.device import ModbusDeviceIdentification
 from pymodbus.datastore import ModbusSequentialDataBlock
 from pymodbus.datastore import ModbusServerContext, ModbusSlaveContext
@@ -45,7 +45,7 @@ log.setLevel(logging.DEBUG)
 
 
 def updating_writer(a):
-    print 'updating'
+    print('updating')
     context  = a[0]
     readfunction = 0x03 # read holding registers
     writefunction = 0x10
@@ -53,7 +53,7 @@ def updating_writer(a):
     count = 50
     s = a[1]
     # import pdb; pdb.set_trace()
-    s.send('{"request":"read"}')
+    s.send(bytes('{"request":"read"}', encoding='utf-8'))
     data = json.loads(s.recv(1500))
     pressure = int(data["outputs"]["pressure"]/3200.0*65535)
     level = int(data["outputs"]["liquid_level"]/100.0*65535)
@@ -61,7 +61,7 @@ def updating_writer(a):
         pressure = 65535
     if level > 65525:
         level = 65535
-    print data
+    print(data)
 
     # import pdb; pdb.set_trace()
     context[slave_id].setValues(4, 1, [pressure,level])
