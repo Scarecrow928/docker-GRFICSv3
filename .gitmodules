@@ -4,3 +4,6 @@
 [submodule "workstation_docker/OpenPLC_Editor"]
 	path = workstation_docker/OpenPLC_Editor
 	url = https://github.com/thiagoralves/OpenPLC_Editor.git
+[submodule "hmi_docker/ScadaBR_Installer"]
+	path = hmi_docker/ScadaBR_Installer
+	url = https://github.com/thiagoralves/ScadaBR_Installer.git

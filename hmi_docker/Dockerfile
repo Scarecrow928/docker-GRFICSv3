@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-COPY . /src
+COPY ScadaBR_Installer /src
 #COPY sources.list /etc/apt/sources.list
 
 WORKDIR /src
