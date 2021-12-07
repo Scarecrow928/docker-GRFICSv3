@@ -12,4 +12,7 @@ RUN apt-get update && apt-get install -y git sudo
 
 RUN ./install.sh docker
 
+COPY mbconfig.cfg /src/webserver/
+COPY openplc.db /src/webserver/
+
 ENTRYPOINT [ "/src/start_openplc.sh" ]
