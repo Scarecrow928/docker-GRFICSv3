@@ -21,14 +21,57 @@ services:
   simulation:
     image: simulation:0.1
     build: ./simulation_docker
-    deploy:
-      replicas: 1
     # ports:
     #   - 8081:80
     networks:
       lan:
         ipv4_address: 192.168.95.10
-  
+
+  simulation_feed2:
+    image: simulation:0.1
+    build: ./simulation_docker
+    command: "python3 /src/remote_io/modbus/feed2.py"
+    networks:
+      lan:
+        ipv4_address: 192.168.95.11
+    restart: always
+
+  simulation_purge:
+    image: simulation:0.1
+    build: ./simulation_docker
+    command: "python3 /src/remote_io/modbus/purge.py"
+    networks:
+      lan:
+        ipv4_address: 192.168.95.12
+    restart: always
+
+  simulation_product:
+    image: simulation:0.1
+    build: ./simulation_docker
+    command: "python3 /src/remote_io/modbus/product.py"
+    networks:
+      lan:
+        ipv4_address: 192.168.95.13
+    restart: always
+
+  simulation_tank:
+    image: simulation:0.1
+    build: ./simulation_docker
+    command: "python3 /src/remote_io/modbus/tank.py"
+    networks:
+      lan:
+        ipv4_address: 192.168.95.14
+    restart: always
+
+  simulation_analyzer:
+    image: simulation:0.1
+    build: ./simulation_docker
+    command: "python3 /src/remote_io/modbus/analyzer.py"
+    networks:
+      lan:
+        ipv4_address: 192.168.95.15
+    restart: always
+
   workstation:
     image: workstation:0.1
     build: ./workstation_docker

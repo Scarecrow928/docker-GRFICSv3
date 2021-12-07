@@ -95,7 +95,7 @@ def run_update_server():
     identity.MajorMinorRevision = '1.0'
 
     # connect to simulation
-    HOST = '127.0.0.1'
+    HOST = '192.168.95.10'
     PORT = 55555
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((HOST, PORT))

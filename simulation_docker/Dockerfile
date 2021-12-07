@@ -10,4 +10,4 @@ COPY docker-entrypoint.sh /
 RUN apt-get update && apt-get install -y libjsoncpp-dev liblapacke-dev \
     python3 python3-pip build-essential && pip install pymodbus twisted && make
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+CMD [ "/docker-entrypoint.sh" ]
